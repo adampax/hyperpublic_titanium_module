@@ -1,0 +1,52 @@
+h1. Hyperpublic commonjs Titanium module
+
+h3. Using the Library
+
+p. Include the lib/hyperpublic.js file in your application
+
+<pre>
+var Hyperpublic = require('/lib/hyperpublic');
+</pre>
+
+h3. Creating the Hyperpublic Object
+
+p. Create the Hyperpublic object by declaring it
+
+<pre>
+var hyperpublic = new Hyperpublic.Client('YOUR CLIENT KEY', 'YOUR CLIENT SECRET');
+</pre>
+
+h3. Interacting with the Hyperpublic API
+
+p. Now you can query against the Hyperpublic API. Each query takes two arguments. The first argument is the query itself while the second argument is the name of the callback function that you have specfied (if you're not familiar with JSONP, "start here":http://en.wikipedia.org/wiki/JSONP).
+
+<pre>
+client.places.find(your_query, your_callback);
+</pre>
+
+h4. Show a Place or Offer
+
+p. A simple query for a person who has the id '4' would look something like the call below. This call also triggers a function called 'callback'.
+
+<pre>
+hyperpublic.places.show({
+	"id":4
+}, 'callback');
+</pre>
+
+
+h4. Search for Places or Offers
+
+p. It's very easy to search the Hyperpublic by sending a series of paramaters to the API. If I wanted to find 2 pizza places in New York, NY 10014, I would issue a query like this:
+
+<pre>
+hyperpublic.places.find({ 
+	"location" : "New York, NY 10014", 
+	"q":"pizza", 
+	"limit": "2"
+}, 'callback');
+</pre>
+
+p. The Hyperpublic API would then return a JSON object which represtents the data available in the callback function.
+
+p. For detailed documentation on the Hyperpublic API, visit the "developer site":http://developers.hyperpublic.com.
